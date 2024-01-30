@@ -3,7 +3,7 @@
 
 from odoo import api, fields, models
 
-from .stock_move_line import check_date
+from ..utils import check_date
 
 
 class StockInventory(models.Model):
@@ -21,7 +21,7 @@ class StockInventory(models.Model):
         check_date(self.date_backdating)
 
     def post_inventory(self):
-        no_backdate_inventories = self.env["stock.inventory"].browse()
+        no_backdate_inventories = self.env["stock.inventory"]
         for inventory in self:
             date_backdating = inventory.date_backdating
             if date_backdating:

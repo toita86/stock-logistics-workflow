@@ -8,8 +8,8 @@ class StockInventoryLine(models.Model):
     _inherit = "stock.inventory.line"
 
     def _get_move_values(self, qty, location_id, location_dest_id, out):
-        res = super()._get_move_values(qty, location_id, location_dest_id, out)
         self.ensure_one()
+        res = super()._get_move_values(qty, location_id, location_dest_id, out)
         date_backdating = self.inventory_id.date_backdating
         if date_backdating:
             move_line_ids = res.get("move_line_ids", list())
