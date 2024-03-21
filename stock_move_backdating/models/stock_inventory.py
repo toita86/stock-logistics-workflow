@@ -32,5 +32,7 @@ class StockInventory(models.Model):
             else:
                 no_backdate_inventories |= inventory
         res = super(StockInventory, no_backdate_inventories).post_inventory()
-        self.mapped("move_ids")._backdating_account_moves()
+        moves = self.mapped("move_ids")
+        moves._backdating_account_moves()
+        moves._backdating_stock_valuation_layers()
         return res

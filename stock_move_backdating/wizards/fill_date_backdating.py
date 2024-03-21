@@ -5,7 +5,7 @@
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
-from ..models.stock_move_line import check_date
+from ..utils import check_date
 
 
 class FillDateBackdating(models.TransientModel):
